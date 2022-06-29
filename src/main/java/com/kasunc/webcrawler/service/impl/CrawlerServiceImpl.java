@@ -84,7 +84,7 @@ public class CrawlerServiceImpl implements CrawlerService {
 	@Async
 	@Scheduled(fixedDelay = 500)
 	@Override
-	public void scheduleFixedDelayTask() throws CrawlerException {
+	public void crawlSchaduledURL() throws CrawlerException {
 		//Retrieve oldest pending URL to crawl 
 		List<CrawlURL> s = crawlURLRepository.findFirstPendingURL(PageRequest.of(0, 1));
 		//If pending URL found   

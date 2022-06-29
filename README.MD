@@ -31,7 +31,7 @@ This will add a backed record for crawl pending  and Crawlers ( Spring Scheduler
 	@Async
 	@Scheduled(fixedDelay = 500)
 	@Override
-	public void scheduleFixedDelayTask() throws CrawlerException { }
+	public void crawlSchaduledURL() throws CrawlerException { }
 ```
 ### Search 
 Access http://localhost:8080/search/view for search window 

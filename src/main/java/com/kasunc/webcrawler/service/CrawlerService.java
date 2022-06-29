@@ -6,6 +6,6 @@ import com.kasunc.webcrawler.model.jpa.CrawlURL;
 
 public interface CrawlerService {
 	public CrawlURL crawl(CrawlInput in ) throws CrawlerException;
-	public void scheduleFixedDelayTask() throws CrawlerException ;
+	public void crawlSchaduledURL() throws CrawlerException ;
 	
 }
