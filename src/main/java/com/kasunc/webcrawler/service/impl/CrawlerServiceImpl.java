@@ -122,12 +122,10 @@ public class CrawlerServiceImpl implements CrawlerService {
 		if (s.size() == 1) {
 
 			CrawlURL entity = s.get(0);
-
-			
-
 			// Update states to pending so no other schedulers will pick for Crawl
 
 			logger.debug("Fount enttiy for  crawl {} ", entity.getId());
+			//No Crawling for max nested iterations 
 			if (entity.getNestediterations()   <= getNestediterations()) {
 
 				entity.setCrawlStatus("P");
@@ -151,6 +149,7 @@ public class CrawlerServiceImpl implements CrawlerService {
 				int crwlCount = 0;
 				for (Element element : elts) {
 					crwlCount++;
+					// Iteration breaks if max iteration count reached 
 					if (crwlCount > maxcrawlcount) {
 						break;
 					}
