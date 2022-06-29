@@ -81,6 +81,7 @@ class WebCrawlerApplicationTests {
 		});
 		String expectedMessage = "URL Already Exsists";
 		String actualMessage = exception.getMessage();
+		System.out.println(actualMessage);
 		assertTrue(actualMessage.contains(expectedMessage));
 
 	}
@@ -103,7 +104,7 @@ class WebCrawlerApplicationTests {
 	@Test
 	void schaduleNweURLForCrawl() throws Exception {
 		UrlEntity entity1 = new UrlEntity(0l, "https://www.test.com", "TEST CONTENT ", "N");
-		CrawlURL crawlUrl = new CrawlURL(0l, entity1.getUrlString(), entity1.getUrlString(), "", "N");
+		CrawlURL crawlUrl = new CrawlURL(0l, entity1.getUrlString(), entity1.getUrlString(), "", "N","TEST THREAD");
 		
 		CrawlInput in = new CrawlInput(1l); 
  
@@ -121,7 +122,7 @@ class WebCrawlerApplicationTests {
 	@Test
 	void shouldNotSaveIfUrlIDIsNotInDb() {
 		UrlEntity entity1 = new UrlEntity(0l, "https://www.test.com", "TEST CONTENT ", "N");
-		CrawlURL crawlUrl = new CrawlURL(0l, entity1.getUrlString(), entity1.getUrlString(), "", "N");
+		CrawlURL crawlUrl = new CrawlURL(0l, entity1.getUrlString(), entity1.getUrlString(), "", "N","TEST THREAD");
 		
 		CrawlInput in = new CrawlInput(1l); 
  
@@ -142,7 +143,7 @@ class WebCrawlerApplicationTests {
 	@Test
 	void shouldNotSaveIfUrlIDIsAlreadySchaduled() {
 		UrlEntity entity1 = new UrlEntity(0l, "https://www.test.com", "TEST CONTENT ", "N");
-		CrawlURL crawlUrl = new CrawlURL(0l, entity1.getUrlString(), entity1.getUrlString(), "", "N");
+		CrawlURL crawlUrl = new CrawlURL(0l, entity1.getUrlString(), entity1.getUrlString(), "", "N","TEST THREAD");
 		
 		CrawlInput in = new CrawlInput(1l); 
  
@@ -163,9 +164,9 @@ class WebCrawlerApplicationTests {
 	
 	@Test
 	void shouldReturnListOfCrawlURLOnSearch() {
-		CrawlURL crawlUrl1 = new CrawlURL(0l, "https://www.test.com", "https://www.test.com", "TEST CONTENT 01", "N");
-		CrawlURL crawlUrl2 = new CrawlURL(0l, "https://www.test.com", "https://www.testtwo.com", "TEST CONTENT 02", "N");
-		CrawlURL crawlUrl3 = new CrawlURL(0l, "https://www.test.com", "https://www.testtthree.com", "TEST CONTENT 03", "N");
+		CrawlURL crawlUrl1 = new CrawlURL(0l, "https://www.test.com", "https://www.test.com", "TEST CONTENT 01", "N" ,"TEST THREAD");
+		CrawlURL crawlUrl2 = new CrawlURL(0l, "https://www.test.com", "https://www.testtwo.com", "TEST CONTENT 02", "N" ,"TEST THREAD");
+		CrawlURL crawlUrl3 = new CrawlURL(0l, "https://www.test.com", "https://www.testtthree.com", "TEST CONTENT 03", "N" ,"TEST THREAD");
 		
 		List<CrawlURL> asList = Arrays.asList(new CrawlURL[] {crawlUrl1 , crawlUrl2 , crawlUrl3} );
 		

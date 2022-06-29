@@ -28,18 +28,46 @@ public class CrawlURL {
     @Column(name = "crwlStatus" )
     private String crawlStatus;
     
+    @Column(name = "worker" )
+    private String worker;
+    
+    @Column(name = "nestediterations" )
+    private int nestediterations;
+    
     public CrawlURL() { }
    
 
-	public CrawlURL(Long id, String rootURL, String creawleURL, String urlContent, String crawlStatus) {
+	public CrawlURL(Long id, String rootURL, String creawleURL, String urlContent, String crawlStatus, String worker ) {
 		super();
 		this.id = id;
 		this.rootURL = rootURL;
 		this.creawleURL = creawleURL;
 		this.urlContent = urlContent;
 		this.crawlStatus = crawlStatus;
+		this.worker = worker ; 
+		this.nestediterations = 1 ;
+	}
+	public CrawlURL(Long id, String rootURL, String creawleURL, String urlContent, String crawlStatus, String worker , int nestediterations) {
+		super();
+		this.id = id;
+		this.rootURL = rootURL;
+		this.creawleURL = creawleURL;
+		this.urlContent = urlContent;
+		this.crawlStatus = crawlStatus;
+		this.worker = worker ; 
+		this.nestediterations = nestediterations;
 	}
 
+
+
+	public String getWorker() {
+		return worker;
+	}
+
+
+	public void setWorker(String worker) {
+		this.worker = worker;
+	}
 
 
 	public Long getId() {
@@ -80,6 +108,16 @@ public class CrawlURL {
 
 	public void setCrawlStatus(String crawlStatus) {
 		this.crawlStatus = crawlStatus;
+	}
+
+
+	public int getNestediterations() {
+		return nestediterations;
+	}
+
+
+	public void setNestediterations(int nestediterations) {
+		this.nestediterations = nestediterations;
 	}
  
      

@@ -17,7 +17,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @EnableAsync
 public class WebConfig implements WebMvcConfigurer , SchedulingConfigurer
  {
-
+ 
     
     /**
      * The pool size.

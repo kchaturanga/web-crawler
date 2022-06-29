@@ -36,17 +36,13 @@ public class URLController {
 	ResponseEntity<URlPostOut> postURL(@RequestBody URLInput input) {
 		logger.debug("start postURL => {} ", input.getUrl());
 		try {
-			if (urlService.postUrl(new UrlEntity(0l, input.getUrl(), "", "N") ) != null) {
+			 urlService.postUrl(new UrlEntity(0l, input.getUrl(), "", "N"))  ;
 				logger.debug("Retun postURL => {} ",input.getUrl());
 				return new ResponseEntity<>(new URlPostOut("200"), HttpStatus.OK);
-			} else {
-				logger.debug("Error in postURL => {} ", input.getUrl());
-				return new ResponseEntity<>(new URlPostOut("Some Error in the saving process "),
-						HttpStatus.INTERNAL_SERVER_ERROR);
-			}
+			 
 		} catch (Exception e) {
 			logger.debug("Error in postURL => " ,e);
-			return new ResponseEntity<>(new URlPostOut("Some Error in the saving process "),
+			return new ResponseEntity<>(new URlPostOut(e.getMessage()),
 					HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}

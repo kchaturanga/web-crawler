@@ -39,7 +39,7 @@ Type your query and click search
 
 ## Limitations and Improvement
 ### Limitations 
-* At the moment URL crawlers will run indefinitely to crawl nested URLS , And that has to handle , Either adding limit for nested URLs or number or Fetches for each crawl 
+* At the moment URL crawlers will run 4 nested URLs and 100 MAX in each iteration  to crawl nested URLS  
 * At the moment application uses in memory H2 Database and that need to change 
 * No pagination for results and crawl display 
 * At the moment , in search full text fetched by URL comes to front end , Which can cause memory issues in browser . 

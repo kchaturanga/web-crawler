@@ -35,6 +35,13 @@ span.hilight-q {
     font-weight: bold;
     background: yellow;
 }
+.no-results {
+    text-align: left;
+    color: red;
+    border: 1px solid red;
+    margin: 14px;
+    text-align: center;
+}
 	</style>
 </head>
 
@@ -66,13 +73,15 @@ span.hilight-q {
 			$('#search-btn').click(function () {
 			$.get("./results?q=" + $('#query').val(), function (data, status) {
 				$('.url-container').html('');
+				if(!data.urls || data.urls.length == 0 ){
+					$('.url-container').html('<div class="no-results">No Resuts available</div>');
+				}
 				for(let url of data.urls){
 				var html = url.urlContent;
 				var div = document.createElement("div");
 				div.innerHTML = html;
 				var text = div.textContent || div.innerText || "";
-
-
+				
 					let fh = text.split($('#query').val())[0];
 					fh = fh.substr(fh.length - 50 );
 					let lh = text.split($('#query').val())[1];

@@ -59,8 +59,8 @@
 					}).done(function () {
 						 
 						refreshURLGrid() 
-					}).fail(function () {
-						alert("Sorry. Server unavailable. ");
+					}).fail(function (data) {
+						alert(data.responseJSON.message);
 					});
 					} else {
 					alert("Please enter a valied URL");
@@ -95,8 +95,8 @@
 					}).done(function () {
 						 
 						refreshURLGrid() 
-					}).fail(function () {
-						alert("Sorry. Server unavailable. ");
+					}).fail(function (data) {
+						alert(data.message);
 					});
 				
 				})

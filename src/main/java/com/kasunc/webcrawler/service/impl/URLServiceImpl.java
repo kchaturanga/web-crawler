@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.kasunc.webcrawler.exception.CrawlerException;
@@ -20,20 +21,45 @@ public class URLServiceImpl implements URLService {
 	@Autowired
 	URLRepository repository ; 
 	
+	@Value("${max.crawl.nestediterations}")
+	private Integer nestediterations;
+	
+	
+	
+	public URLRepository getRepository() {
+		return repository;
+	}
+
+	public void setRepository(URLRepository repository) {
+		this.repository = repository;
+	}
+
+	public Integer getNestediterations() {
+		return nestediterations;
+	}
+
+	public void setNestediterations(Integer nestediterations) {
+		this.nestediterations = nestediterations;
+	}
+
 	@Override
 	public UrlEntity postUrl(UrlEntity urlEntity) throws CrawlerException {
 		logger.debug("Start postUrl >   {} ", urlEntity.getUrlString());
-		try {
+		
 			
-			if(repository.findByUrlStringIs(urlEntity.getUrlString()).isEmpty() ) {
-				return repository.save(urlEntity);
+			List<UrlEntity> findByUrlStringIs = repository.findByUrlStringIs(urlEntity.getUrlString());
+			if(findByUrlStringIs.isEmpty() ) {
+				try {
+					return repository.save(urlEntity);
+				} catch (Exception e) {
+					throw new CrawlerException(String.format("Error postUrl   >  %s ", urlEntity.getUrlString()) ,e)  ;
+				}
 			}else {
+				
 				logger.error("Start postUrl URL Already Exsists >   {} ", urlEntity.getUrlString());
 				throw new CrawlerException("URL Already Exsists ");
 			}
-		} catch (Exception e) {
-			throw new CrawlerException(String.format("Error postUrl   >  %s ", urlEntity.getUrlString()) ,e)  ;
-		}
+		
 	}
 
 	@Override
