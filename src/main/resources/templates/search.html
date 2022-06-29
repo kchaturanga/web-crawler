@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Welcome to web Search</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+	<style>
+		#url {
+			width: 100%
+		}
+		
+		.url-display {
+    text-align: left;
+}
+
+.results-item {
+    border-bottom: 1px solid #d0d0d0;
+    margin-bottom: 6px;
+}
+
+.url-header div {
+    color: #0c0cc4;
+    font-weight: bold;
+}
+
+.url-content div {
+    color: #5c5656;
+}
+
+span.hilight-q {
+    color: green;
+    font-weight: bold;
+    background: yellow;
+}
+	</style>
+</head>
+
+<body>
+	<div class="container text-center">
+		<h1>Welcome to web Search</h1>
+		<a href="../"> To Web Crawler </a>
+		<div class="row">
+			<div class='col-4'> Enter your query : </div>
+			<div class='col-6'> <input type="text" id="query"></div>
+			<div class='col-2'> <input type="button" id="search-btn" value="Search" /></div>
+		</div>
+			<div class="row">
+					<div class='col-12  url-container'> </div>
+			</div>
+
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
+	<script>
+
+		$(document).ready(function () {
+			$('#search-btn').click(function () {
+			$.get("./results?q=" + $('#query').val(), function (data, status) {
+				$('.url-container').html('');
+				for(let url of data.urls){
+				var html = url.urlContent;
+				var div = document.createElement("div");
+				div.innerHTML = html;
+				var text = div.textContent || div.innerText || "";
+
+
+					let fh = text.split($('#query').val())[0];
+					fh = fh.substr(fh.length - 50 );
+					let lh = text.split($('#query').val())[1];
+					lh = lh.slice(0, 100);
+					$('.url-container').append(`
+						<div class="row results-item">
+								<div class='col-12'>
+										<div class="row url-header ">
+											<div class='col-12 url-display '> ${url.creawleURL} </div>
+										</div> 
+										<div class="row url-content ">
+											  	<div class='col-12 url-display '> ${fh + " <span class='hilight-q'>" + $('#query').val() + "</span>" + lh } </div>
+										</div>
+								</div>
+
+							</div>
+					`);
+				}
+				
+				$('.crwl-url').click(function(){
+					let urlid = $(this).attr('data-id');
+						$.ajax({
+						url: './crawl',
+						dataType: 'json',
+						type: 'post',
+						contentType: 'application/json',
+						data: JSON.stringify({id: urlid}),
+
+					}).done(function () {
+						 
+						refreshURLGrid() 
+					}).fail(function () {
+						alert("Sorry. Server unavailable. ");
+					});
+				
+				})
+				
+				
+
+			});
+
+		});
+
+		})
+
+			
+	</script>
+</body>
+
+</html>
