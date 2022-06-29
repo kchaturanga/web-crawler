@@ -15,13 +15,13 @@ public class UrlEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
      
-    @Column(name = "urlstr" ,nullable = false, unique = true, length = 45)
+    @Column(name = "urlstr" ,nullable = false, unique = true, length = 500)
     private String urlString;
      
-    @Column(name = "crwcomment" , nullable = false, length = 64)
+    @Column(name = "crwcomment" , nullable = false, length = 500)
     private String creawledComments;
      
-    @Column(name = "crwstatus", nullable = false, length = 20)
+    @Column(name = "crwstatus", nullable = false, length = 5)
     private String crawlledStatus;
     
     public UrlEntity() { }

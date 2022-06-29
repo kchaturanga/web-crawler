@@ -43,6 +43,7 @@ Type your query and click search
 * At the moment application uses in memory H2 Database and that need to change 
 * No pagination for results and crawl display 
 * At the moment , in search full text fetched by URL comes to front end , Which can cause memory issues in browser . 
+* No Expiration logc
 ### Improvements 
 * For search options , we can utilize hibernate full text search for indexing with elastic search 
 * Need to style / improve basic UI 

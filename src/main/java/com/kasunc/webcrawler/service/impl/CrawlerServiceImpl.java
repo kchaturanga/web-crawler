@@ -126,7 +126,7 @@ public class CrawlerServiceImpl implements CrawlerService {
 
 			logger.debug("Fount enttiy for  crawl {} ", entity.getId());
 			//No Crawling for max nested iterations 
-			if (entity.getNestediterations()   <= getNestediterations()) {
+			//if (entity.getNestediterations()   <= getNestediterations()) {
 
 				entity.setCrawlStatus("P");
 
@@ -180,7 +180,7 @@ public class CrawlerServiceImpl implements CrawlerService {
 						logger.error("Fount  crawling URL => " + actualURL, e);
 					}
 				}
-			}
+			//}
 		}
 
 	}
