@@ -26,6 +26,14 @@ Start crawling by clicking "Crawl URL " Button
 
 This will add a backed record for crawl pending  and Crawlers ( Spring Scheduler runs every half a second with 10 parallel threads are configured as crawlers ) will pick that URL and start crawling . 
 
+Worker will take 
+	* 	crawl waiting record ( Status N and Lesser than max Nested Crawls ) from database
+	*	fetch the HTML DOMs anchor tag list using jsoup 
+	*	While traversing save each valid URLS as new pending records 
+	* 	Set nested crawl count + one from parent record 
+	* 	Save content of the document body in the parent record 
+	*	Workers will run 4 nested URLs and 100 MAX in each iteration 
+
 * CrawlerServiceImpl.java / scheduleFixedDelayTask()
 ```java
 	@Async
