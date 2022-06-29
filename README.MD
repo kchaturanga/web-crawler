@@ -27,7 +27,12 @@ Start crawling by clicking "Crawl URL " Button
 This will add a backed record for crawl pending  and Crawlers ( Spring Scheduler runs every half a second with 10 parallel threads are configured as crawlers ) will pick that URL and start crawling . 
 
 * CrawlerServiceImpl.java / scheduleFixedDelayTask()
-
+```java
+@Async
+	@Scheduled(fixedDelay = 500)
+	@Override
+	public void scheduleFixedDelayTask() throws CrawlerException { }
+```
 ### Search 
 Access http://localhost:8080/search/view for search window 
 Type your query and click search 
