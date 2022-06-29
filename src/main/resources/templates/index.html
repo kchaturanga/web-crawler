@@ -11,6 +11,28 @@
 		#url {
 			width: 100%
 		}
+		.row.results-row {
+    padding: 3px;
+    text-align: left;
+    border: 1px solid #dfdfdf;
+    margin: 4px;
+    box-shadow: 1px 1px 1px gray;
+}
+
+.col-8.url-display {
+    font-size: 19px;
+}
+
+.col-2.c-status {
+    border-radius: 5px;
+    background: #ffff86;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 15px;
+    line-height: 32px;
+    color: black;
+}
 	</style>
 </head>
 
@@ -75,10 +97,10 @@
 				$('.url-container').html('');
 				for(let url of data){
 					$('.url-container').append(`
-						<div class="row">
+						<div class="row results-row">
 								<div class='col-8 url-display '> ${url.urlString} </div>
-								<div class='col-2'> ${url.crawlledStatus == "N" ?"Not crawlled " :( url.crawlledStatus == "Y" ? "crawlled":"crawlle Error")} </div>
-								<div class='col-2'> <input type="button"  class='crwl-url' data-id="${url.id}" value="Crawl URL" /></div>
+								<div class='col-2 c-status '> ${url.crawlledStatus == "N" ?"Not crawlled " :( url.crawlledStatus == "Y" ? "crawlled":"crawlle Error")} </div>
+								<div class='col-2 c-btn'> <input type="button"  class='crwl-url' data-id="${url.id}" value="Crawl URL" /></div>
 							</div>
 					`);
 				}
