@@ -28,7 +28,6 @@ import com.kasunc.webcrawler.repository.URLRepository;
 import com.kasunc.webcrawler.service.CrawlerService;
 
 @Service
-@EnableAsync
 public class CrawlerServiceImpl implements CrawlerService {
 	Logger logger = LoggerFactory.getLogger(CrawlerServiceImpl.class);
 

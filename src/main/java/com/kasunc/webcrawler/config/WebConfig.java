@@ -1,5 +1,6 @@
 package com.kasunc.webcrawler.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -22,9 +23,24 @@ public class WebConfig implements WebMvcConfigurer , SchedulingConfigurer
     /**
      * The pool size.
      */
-    private static final int POOL_SIZE = 10;
+	@Value("${schaduler.thread.pool.size}")
+    private  int schadulerThreadPoolSize ;
+	
+	
 
-    /**
+    public int getSchadulerThreadPoolSize() {
+		return schadulerThreadPoolSize;
+	}
+
+
+
+	public void setSchadulerThreadPoolSize(int schadulerThreadPoolSize) {
+		this.schadulerThreadPoolSize = schadulerThreadPoolSize;
+	}
+
+
+
+	/**
      * Configures the scheduler to allow multiple pools.
      *
      * @param taskRegistrar The task registrar.
@@ -34,7 +50,7 @@ public class WebConfig implements WebMvcConfigurer , SchedulingConfigurer
     {
         ThreadPoolTaskScheduler threadPoolTaskScheduler = new ThreadPoolTaskScheduler();
 
-        threadPoolTaskScheduler.setPoolSize(POOL_SIZE);
+        threadPoolTaskScheduler.setPoolSize(getSchadulerThreadPoolSize());
         threadPoolTaskScheduler.setThreadNamePrefix("scheduled-task-pool-");
         threadPoolTaskScheduler.initialize();
 

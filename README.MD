@@ -44,7 +44,9 @@ Type your query and click search
 * No pagination for results and crawl display 
 * At the moment , in search full text fetched by URL comes to front end , Which can cause memory issues in browser . 
 * No Expiration logc
+* Crawling logics need a improvement
+* Configure log paths in logback.xml before start the appliaction  
 ### Improvements 
 * For search options , we can utilize hibernate full text search for indexing with elastic search 
-* Need to style / improve basic UI 
+* Need to style / improve basic UI or add a different front end by making this as backend api  
 
