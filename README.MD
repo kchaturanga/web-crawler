@@ -28,7 +28,7 @@ This will add a backed record for crawl pending  and Crawlers ( Spring Scheduler
 
 * CrawlerServiceImpl.java / scheduleFixedDelayTask()
 ```java
-@Async
+	@Async
 	@Scheduled(fixedDelay = 500)
 	@Override
 	public void scheduleFixedDelayTask() throws CrawlerException { }
